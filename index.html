@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Nnyaks ❤</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ffb6c1, #ff69b4);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        /* Falling Hearts */
+        .heart {
+            position: fixed;
+            color: red;
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Love Letter */
+        .letter-container {
+            margin-top: 50px;
+        }
+
+        .letter {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+        }
+
+       /* Memory Gallery */
+.memory-gallery {
+    margin-top: 30px;
+}
+
+.carousel {
+    display: flex;
+    justify-content: space-evenly;  /* Distribute images evenly */
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    flex-wrap: wrap;  /* Ensure images wrap on smaller screens */
+}
+
+.carousel img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;  /* Make sure images cover the space without stretching */
+}
+
+        /* Secret Message */
+        #hidden-text {
+            display: none;
+            font-size: 18px;
+            color: red;
+        }
+
+        #lock {
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        button {
+            background: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Falling Hearts -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤";
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+    <!-- Background Music -->
+    <audio autoplay loop>
+        <source src="birds_of_a_feather.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Love Letter Animation -->
+    <div class="letter-container">
+        <div class="letter" id="love-letter">
+            <p>
+                Hey Nnyaks, you’re probably getting tired of these but like I said I’ll keep trying to make up for my fuckup however I can, including this😂 
+                I hope you’ll appreciate the gesture Letweke lame but if not then I’ll find another way to make you feel like my princess again❤
+            </p>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById("love-letter").style.display = "block";
+        }, 2000);
+    </script>
+
+    <!-- Memory Gallery -->
+    <div class="memory-gallery">
+        <h2>Our Special Moments 📸</h2>
+        <div class="carousel">
+            <img src="image1.jpg" alt="Memory 1">
+            <img src="image2.jpg" alt="Memory 2">
+            <img src="image3.jpg" alt="Memory 3">
+        </div>
+    </div>
+
+    <!-- Why I Love You -->
+    <div class="love-section">
+        <h2>Why I Love You ❤</h2>
+        <button onclick="showReason()">See why I love you</button>
+        <p id="love-reason"></p>
+    </div>
+
+    <script>
+        const reasons = [
+            "Because you're my safe place.",
+            "Because you always make me laugh.",
+            "Because you always make my day better.",
+            "Just to list a few..."
+        ];
+
+        function showReason() {
+            let randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+            document.getElementById("love-reason").innerText = randomReason;
+        }
+    </script>
+
+    <!-- Secret Message -->
+    <div class="secret-message">
+        <div id="lock">🔒</div>
+        <p id="hidden-text" class="hidden">
+            No website, gift, or words will ever be enough to show how much I care. But I’ll keep trying until you feel it again. Always yours, Nkobi ❤.
+        </p>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById("lock").innerHTML = "❤";
+            document.getElementById("hidden-text").style.display = "block";
+        }, 10000);
+    </script>
+
+   <!-- Apology Feature -->
+<div class="apology">
+    <h2>Do you forgive me? 🥺</h2>
+    <button onclick="forgiveMe(true)">Yes</button>
+    <button onclick="forgiveMe(false)">No</button>
+    <p id="forgiveness-message"></p>
+</div>
+
+<script>
+    function forgiveMe(choice) {
+        let message = choice ? 
+            "I promise to keep making you feel loved ❤" : 
+            "Well, I’m not giving up yet. Click again when you're ready 🥺";
+        document.getElementById("forgiveness-message").innerText = message;
+        
+        // Send the choice to Formspree
+        sendToFormspree("Forgiveness", choice ? "Yes" : "No");
+    }
+</script>
+
+<!-- Date Planner -->
+<div class="date-planner">
+    <h2>Plan Our Next Date 📅</h2>
+    <select id="date-options">
+        <option value="beach">🏖 Picnic</option>
+        <option value="dinner">🍝 Romantic Dinner</option>
+        <option value="games">🎮 Stay-in Game Night</option>
+    </select>
+    <button onclick="confirmDate()">Plan It</button>
+    <p id="date-message"></p>
+</div>
+
+<script>
+    function confirmDate() {
+        let selectedDate = document.getElementById("date-options").value;
+        let message = selectedDate === "beach" ? "🏖 A Picnic it is!" :
+                      selectedDate === "dinner" ? "🍝 A Romantic Dinner it is!" :
+                      "🎮 A Stay-in Game Night it is!";
+        document.getElementById("date-message").innerText = message;
+        
+        // Send the selected date to Formspree
+        sendToFormspree("Date Plan", message);
+    }
+</script>
+
+<form id="formspreeForm" action="https://formspree.io/f/mqaeylpd" method="POST" style="display: none;">
+    <input type="hidden" name="interaction" id="interaction">
+</form>
+
+<script>
+    function sendToFormspree(type, value) {
+        document.getElementById("interaction").value = `${type}: ${value}`;
+        document.getElementById("formspreeForm").submit();
+    }
+</script>
+
+
+</body>
+</html>
